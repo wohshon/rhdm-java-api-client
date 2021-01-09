@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>dev.snowdrop</groupId>
+    <artifactId>snowdrop-dependencies</artifactId>
+    <version>2.3.4.Final-redhat-00001</version>
+  </parent>
+	<groupId>com.redhat.app</groupId>
+	<artifactId>drools-client</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>drools-client</name>
+	<description>Drools client demo</description>
+	<properties>
+		<java.version>11</java.version>
+		<rhdm.version>7.44.0.Final-redhat-00003</rhdm.version>
+	</properties>
+  <dependencyManagement>
+    <dependencies>
+		<dependency>
+		<groupId>com.redhat.ba</groupId>
+		<artifactId>ba-platform-bom</artifactId>
+		<version>7.9.0.redhat-00002</version>
+		<scope>import</scope>
+		<type>pom</type>
+		</dependency>
+
+	</dependencies>
+</dependencyManagement>
+	<dependencies>
+	
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+        <exclusions>
+            <exclusion>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-tomcat</artifactId>
+            </exclusion>
+        </exclusions>
+    </dependency>
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-undertow</artifactId>
+    </dependency>
+<!-- For remote execution on KIE Server -->
+<dependency>
+  <groupId>org.kie.server</groupId>
+  <artifactId>kie-server-client</artifactId>
+</dependency>
+
+<!-- For runtime commands -->
+<dependency>
+  <groupId>org.drools</groupId>
+  <artifactId>drools-compiler</artifactId>
+  <scope>runtime</scope>
+</dependency>
+
+	<dependency>
+		<groupId>org.projectlombok</groupId>
+		<artifactId>lombok</artifactId>
+		<optional>true</optional>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-test</artifactId>
+		<scope>test</scope>
+		<exclusions>
+			<exclusion>
+				<groupId>org.junit.vintage</groupId>
+				<artifactId>junit-vintage-engine</artifactId>
+			</exclusion>
+		</exclusions>
+	</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <excludes>
+            <exclude>
+               <groupId>org.projectlombok</groupId>
+               <artifactId>lombok</artifactId>
+           </exclude>
+         </excludes>
+           <redeploy>true</redeploy>
+       </configuration>
+        <executions>
+            <execution>
+                <goals>
+                    <goal>repackage</goal>
+                </goals>
+            </execution>
+        </executions>
+      </plugin>
+
+		</plugins>
+	</build>
+
+</project>
